@@ -175,7 +175,7 @@ my %combine_ops = (
         opname => 'copy',
         fname => 'indcopy',
         fun_op =>  '=',
-        sig => 'a(n); indx ind(n); [o] c(m)'
+        sig => 'a(n); indx ind(n); [o] c(m)',
         identity => 0,
         # all types
     },
@@ -210,14 +210,14 @@ my %order_ops = (
         fname => 'indmax',
         ops => [ '>' ],
         sig => 'a(n); indx ind(n); [o] c(m)',
-        identity => { uint => 0, int => 2^$n-1, float => -FLT_MAX, double => -DBL_MAX },
+        identity => { uint => 0, int => '2^$n-1', float => '-FLT_MAX', double => '-DBL_MAX' },
         # all types,
     },
     'min' => {
         fname => 'indmin',
         ops => [ '<' ],
         sig => 'a(n); indx ind(n); [o] c(m)',
-        identity => { uint => 2**$n-1, int => 2^($n-1), float => FLT_MAX, double => DBL_MAX },
+        identity => { uint => '2**$n-1', int => '2^($n-1)', float => 'FLT_MAX', double => 'DBL_MAX' },
         # all types,
     },
     'minmax' => {
@@ -514,3 +514,5 @@ Threaded Example:
 =cut
 
 ');
+
+pp_done();
