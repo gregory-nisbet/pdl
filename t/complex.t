@@ -3,7 +3,7 @@ use PDL::Complex;
 use PDL::Config;
 
 BEGIN {
-   use Test::More tests => 17;
+   use Test::More tests => 22;
 }
 
 sub tapprox {
@@ -80,3 +80,11 @@ TODO: {
    my $c211str = "$c211";
    ok($c211str=~/(9.123|4.123)/, 'sf.net bug #1176614');
 }
+
+
+$x=3+4*i;$y=4+2*i;$c=1+1*i;
+is(Ccmp(Cmul($x,$y),4+22*i),0,"Cmul");
+is(Ccmp($x*$y,4+22*i),0,"overloaded *");
+is(Ccmp(Cdiv($x,$y),1 + 0.5*i),0,"Cdiv");
+is(Ccmp($x/$y,1+0.5*i),0,"overloaded /");
+ok(tapprox(Cabs(atan2(pdl(1)->r2C,pdl(0)->r2C)),PDL::Math::asin(1)),"atan2");
